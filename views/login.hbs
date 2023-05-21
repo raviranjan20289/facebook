@@ -1,29 +1,26 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/api/user/login" method="POST">
 
-  </head>
-  <body>
+                   
+                
+                    <label for="Email">email</label>
+                    <input type="email" name="email" >
 
-    <h1>Authentication Process </h1>
-    <form action="/api/user/login" method="POST" >
+                    <label for="password">password</label>
+                    <input type="password" name="password" >
 
-      <label for="Email">Email</label>
-      <input type="email" id="email" name="email" required />
-
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" required />
-
-      <button type="submit" class="btn">Login</button>
-
-      <br /><br />
-
-
+                      <button type="submit" class="btn">Sign In</button>
     </form>
-  <br> <br>
-<p>Don't have an account yet? <a href="/api/user/getRegister">Sign up here</a>.</p>
-  </body>
+    <br> <br>
+
+<p>New user <a href="/api/user/getRegister">Sign Up</a>.</p>
+</body>
 </html>

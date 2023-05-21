@@ -2,16 +2,24 @@ const express = require('express');
 
 const router = express.Router();
 
+const userAuthentication = require('../middleware/auth')
 
-const {postRegister, getRegister, postLogin, login} = require('../controllers/user')
 
-router.route('/register').post(postRegister);
 
-router.route('/getRegister').get(getRegister);
+const messageControllers = require('../controllers/user')
 
-router.route('/login').post(postLogin);
+router.post('/register', messageControllers.postRegister);
 
-router.route('/login').get(login);
+router.get('/getRegister', messageControllers.getRegister);
+
+router.post('/login' , messageControllers.postLogin)
+
+
+router.get('/login',messageControllers.login);
+
+router.get('/dashboard', userAuthentication.authMiddleware, messageControllers.getDashboard);
+
+router.get('/logout', userAuthentication.authMiddleware, messageControllers.logout)
 
 
 

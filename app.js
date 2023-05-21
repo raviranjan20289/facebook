@@ -1,5 +1,12 @@
 const express = require('express');
 const app = express();
+const nocache = require("nocache");
+app.use(nocache())
+
+const cookies = require('cookie-parser');
+app.use(cookies());
+
+
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
