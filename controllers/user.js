@@ -69,8 +69,8 @@ exports.postLogin = async (req, res) => {
     const token = jwt.sign({email: existingUser.email, id: existingUser._id}, 'secret_key');
     res.cookie('jwt', token)
     // return res.status(201).json({user:existingUser, token:token});
-    res.redirect('/api/user/dashboard');
-
+    // res.redirect(`/api/user/dashboard/${existingUser.name}`);
+    res.render('dashboard', {data: existingUser.name});
 
   } catch (err) {
     console.log(err.message);
@@ -84,6 +84,8 @@ exports.login = async ( req, res) =>{
 }
 
 exports.getDashboard = async (req, res) =>{
+  // const data = req.params.name;
+
   res.status(201).render('dashboard');
 }
 
@@ -98,6 +100,27 @@ exports.logout = async ( req, res) =>{
     console.log(error.message);
   }
 }
+
+exports.myprofile = async (req, res) => {
+  const userId = req.params.id;
+  
+  try {
+  
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    
+    res.render('myprofile', { user });
+  } catch (error) {
+    console.error( error);
+    res.send('Internal Server Error');
+  }
+};
+
+
+
 
 // module.exports = {
 //   postRegister,

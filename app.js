@@ -10,7 +10,7 @@ app.use(cookies());
 const bcrypt = require('bcrypt');
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000; 
 require('./utility/database')
 const userRoutes = require('./routes/user');
 const User = require('./models/user')
