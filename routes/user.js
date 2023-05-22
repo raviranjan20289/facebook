@@ -19,7 +19,9 @@ router.get('/login',messageControllers.login);
 
 router.get('/dashboard', userAuthentication.authMiddleware, messageControllers.getDashboard);
 
-router.get('/logout', userAuthentication.authMiddleware, messageControllers.logout)
+router.get('/logout', userAuthentication.authMiddleware, messageControllers.logout);
+
+router.get('/myprofile/:id', userAuthentication.authMiddleware, messageControllers.myprofile);
 
 
 
