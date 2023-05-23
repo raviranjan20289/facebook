@@ -66,7 +66,7 @@ exports.postLogin = async (req, res) => {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
     
-    const token = jwt.sign({email: existingUser.email, id: existingUser._id}, 'secret_key');
+    const token = jwt.sign({id: existingUser._id}, process.env.Secret_Key);
     res.cookie('jwt', token)
     // return res.status(201).json({user:existingUser, token:token});
     // res.redirect(`/api/user/dashboard/${existingUser.name}`);
@@ -102,9 +102,11 @@ exports.logout = async ( req, res) =>{
 }
 
 exports.myprofile = async (req, res) => {
-  const userId = req.params.id;
-  
   try {
+  const userId = req.userId;
+  console.log(userId)
+
+ 
   
     const user = await User.findById(userId);
     
@@ -120,11 +122,3 @@ exports.myprofile = async (req, res) => {
 };
 
 
-
-
-// module.exports = {
-//   postRegister,
-//   getRegister,
-//   postLogin,
-//   login
-// };
