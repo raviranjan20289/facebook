@@ -104,13 +104,9 @@ exports.logout = async ( req, res) =>{
 exports.myprofile = async (req, res) => {
   try {
   const userId = req.userId;
-  console.log(userId)
-
- 
-  
+  console.log(userId) 
     const user = await User.findById(userId);
-    
-    if (!user) {
+     if (!user) {
       return res.status(404).send('User not found');
     }
     
@@ -120,5 +116,34 @@ exports.myprofile = async (req, res) => {
     res.send('Internal Server Error');
   }
 };
+
+
+// exports.searchUser = async (req, res) => {
+//   try {
+//     const search = req.query.search;
+//     const data = await User.find({ "name": { $regex: ".*" +search+".*", $options: 'i' } });
+//     res.send(data);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('An error occurred');
+//   }
+// };
+
+exports.otherUser = async (req, res) =>{
+  try {
+    const search = req.query.search;
+   
+    const user = await User.findOne({ "name": { $regex: ".*" +search+".*", $options: 'i' } });
+    
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    res.render('otherUser', {user})
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred');
+  }
+}
 
 

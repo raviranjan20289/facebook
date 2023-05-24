@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome to the searched users page </h1>
+
+    <form action="/api/user/addFriend/" method="POST">
+
+  <a href="/api/user/dashboard/">myProfile</a>
+
+<h4>About:</h4>
+
+
+  <li> <a href="/api/user/friends">{{#if friendRequestSent}}
+  <button disabled>Request Sent</button>
+{{else}}
+  <button>Add Friend</button>
+{{/if}} </a> </li>
+  <ul>
+  <li><a href="/api/user/pendingRequest">Friends</a> </li>
+
+</ul>  
+  
+
+
+    <h2>General Information</h2>
+  <ul>
+  <li>
+  Name: {{user.name}}
+  </li>
+  <br>
+  <li>  Email: {{user.email}}</li>
+  <br> 
+  <li> Created At: {{user.createdAt}}</li>
+ </ul>
+     
+    </form>
+</body>
+</html>

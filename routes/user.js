@@ -23,6 +23,12 @@ router.get('/logout', userAuthentication.authMiddleware, messageControllers.logo
 
 router.get('/myprofile', userAuthentication.authMiddleware, messageControllers.myprofile);
 
+// router.get('/otherUsers', userAuthentication.authMiddleware, messageControllers.searchUser);
+
+router.get('/searchedUser', userAuthentication.authMiddleware, messageControllers.otherUser);
+
+
+
 
 
 module.exports = router ;
