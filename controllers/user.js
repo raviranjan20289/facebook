@@ -119,16 +119,6 @@ exports.myprofile = async (req, res) => {
 };
 
 
-// exports.searchUser = async (req, res) => {
-//   try {
-//     const search = req.query.search;
-//     const data = await User.find({ "name": { $regex: ".*" +search+".*", $options: 'i' } });
-//     res.send(data);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send('An error occurred');
-//   }
-// };
 
 exports.otherUser = async (req, res) =>{
   try {
