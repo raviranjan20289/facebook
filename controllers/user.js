@@ -1,12 +1,13 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+ const Sent = require('../models/sent');
 
 
 exports.postRegister = async (req, res) => {
   try {
    
-   const {name, email, password} = req.body;
+   const {name, username, email, password} = req.body;
 
    const exitingUser = await User.findOne({email});
 
@@ -15,7 +16,7 @@ exports.postRegister = async (req, res) => {
    }
    
    const registerEmployee = new User ({
-    name, email, password
+    name, username, email, password
    })
 
     const salt = await bcrypt.genSalt(10);
@@ -132,14 +133,18 @@ exports.myprofile = async (req, res) => {
 exports.otherUser = async (req, res) =>{
   try {
     const search = req.query.search;
-   
-    const user = await User.findOne({ "name": { $regex: ".*" +search+".*", $options: 'i' } });
+    const loggedInUserId = req.userId;
+    const user = await User.findOne({ "username": { $regex: ".*" +search+".*", $options: 'i' } });
     
     if (!user) {
       return res.status(404).send('User not found');
     }
+    const sentAlready = await Sent.findOne({
+      from: loggedInUserId,
+      to: user._id
+  })
 
-    res.render('otherUser', {user})
+    res.render('otherUser', {user , sentAlready})
   } catch (error) {
     console.error(error);
     res.status(500).send('An error occurred');

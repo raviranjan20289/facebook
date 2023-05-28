@@ -15,6 +15,8 @@ const PORT = process.env.PORT || 3000;
 require('./utility/database')
 const userRoutes = require('./routes/user');
 const User = require('./models/user')
+const Sent = require('./models/sent');
+const Pending = require('./models/pending');
 app.use(express.json())
 app.set('view engine', 'hbs');
 app.set('views', 'views');

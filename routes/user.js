@@ -8,6 +8,8 @@ const userAuthentication = require('../middleware/auth')
 
 const messageControllers = require('../controllers/user')
 
+const requestControllers = require('../controllers/request')
+
 router.post('/register', messageControllers.postRegister);
 
 router.get('/getRegister', messageControllers.getRegister);
@@ -26,6 +28,10 @@ router.get('/myprofile', userAuthentication.authMiddleware, messageControllers.m
 // router.get('/otherUsers', userAuthentication.authMiddleware, messageControllers.searchUser);
 
 router.get('/searchedUser', userAuthentication.authMiddleware, messageControllers.otherUser);
+
+router.get('/addFriends/:uname', userAuthentication.authMiddleware, requestControllers.addFriend);
+
+
 
 
 

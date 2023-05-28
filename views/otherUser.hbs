@@ -9,29 +9,44 @@
 <body>
     <h1>Welcome to the searched users page </h1>
 
-    <form action="/api/user/addFriend/" method="POST">
+  
 
   <a href="/api/user/dashboard/">myProfile</a>
 
 <h4>About:</h4>
 
 
-  <li> <a href="/api/user/friends">{{#if friendRequestSent}}
-  <button disabled>Request Sent</button>
+  <li> 
+      
+{{#if sentAlready}}
+   <a href="/api/user/deleteFriend">Request sent </a>
 {{else}}
-  <button>Add Friend</button>
-{{/if}} </a> </li>
+   <a href="/api/user/addFriends/{{user.username}}">Add friend </a> 
+{{/if}}
+
+</li>
+     
+
+     
+
+
+
+  
+
   <ul>
   <li><a href="/api/user/pendingRequest">Friends</a> </li>
-
 </ul>  
   
 
 
-    <h2>General Information</h2>
+ <h2>General Information</h2>
   <ul>
   <li>
   Name: {{user.name}}
+  </li>
+  <br>
+  <li>
+  username: {{user.username}}
   </li>
   <br>
   <li>  Email: {{user.email}}</li>
@@ -39,6 +54,6 @@
   <li> Created At: {{user.createdAt}}</li>
  </ul>
      
-    </form>
+   
 </body>
 </html>
