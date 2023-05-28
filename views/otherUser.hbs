@@ -19,7 +19,7 @@
   <li> 
       
 {{#if sentAlready}}
-   <a href="/api/user/deleteFriend">Request sent </a>
+   <a href="/api/user/deleteFriend/{{user.username}}">Request sent </a>
 {{else}}
    <a href="/api/user/addFriends/{{user.username}}">Add friend </a> 
 {{/if}}

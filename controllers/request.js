@@ -45,5 +45,30 @@ exports.addFriend = async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   };
-  
 
+  
+  
+exports.deleteFriend = async (req, res) =>{
+try{
+  const { uname } = req.params;
+    const loggedInUserId = req.userId;
+
+    const searchedUser = await User.findOne({ username: uname });
+
+    if (!searchedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const searchedUserId = searchedUser._id;
+
+    await Sent.findOneAndDelete({ from: loggedInUserId, to: searchedUserId });
+    await Pending.findOneAndDelete({ from: loggedInUserId, to: searchedUserId });
+
+    res.redirect(`/api/user/searchedUser?search=${uname}`);
+
+}catch(error){
+  console.log(error);
+  res.status(500).json({message: 'Internal server error'});
+}
+
+}
